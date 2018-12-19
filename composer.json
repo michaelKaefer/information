@@ -1,5 +1,5 @@
 {
-  "name": "information-unit/information-unit",
+  "name": "unit/information-unit",
   "description": "Package for calculating and formatting information units like Bit, Byte, Kilobit, Kilobyte, Megabit, Megabyte, etc.",
   "homepage": "http://github.com/michaelKaefer/information-unit",
   "license": "MIT",
