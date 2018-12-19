@@ -1,7 +1,7 @@
 {
-  "name": "unit/information-unit",
+  "name": "unit/information",
   "description": "Package for calculating and formatting information units like Bit, Byte, Kilobit, Kilobyte, Megabit, Megabyte, etc.",
-  "homepage": "http://github.com/michaelKaefer/information-unit",
+  "homepage": "http://github.com/michaelKaefer/information",
   "license": "MIT",
   "authors": [
     {
@@ -34,12 +34,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Unit\\InformationUnit\\": "src/"
+      "Unit\\Information\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Unit\\InformationUnit\\Test\\": "tests/src/"
+      "Unit\\Information\\Test\\": "tests/src/"
     }
   }
 }

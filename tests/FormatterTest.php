@@ -1,11 +1,11 @@
 <?php
 
-namespace Unit\InformationUnit\Tests;
+namespace Unit\Information\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Unit\InformationUnit\Formatter;
-use Unit\InformationUnit\Mapper;
-use Unit\InformationUnit\Size;
+use Unit\Information\Formatter;
+use Unit\Information\Mapper;
+use Unit\Information\Size;
 
 class MemoryTest extends TestCase
 {

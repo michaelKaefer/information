@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Unit\InformationUnit;
+namespace Unit\Information;
 
 /**
  * Class Mapper
  *
- * @package Unit\InformationUnit
+ * @package Unit\Information
  */
 class Mapper
 {

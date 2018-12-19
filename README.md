@@ -13,7 +13,7 @@ composer require unit/information-unit
 Instantiate information unit:
 
 ```php
-use Unit\InformationUnit\Size;
+use Unit\Information\Size;
 
 $fileSize = new Size(1); // arguments which are no strings are treated as Byte values
 $fileSize2 = new Size('1MB');
