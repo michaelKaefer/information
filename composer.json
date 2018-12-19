@@ -1,0 +1,45 @@
+{
+  "name": "information-unit/information-unit",
+  "description": "Package for calculating and formatting information units like Bit, Byte, Kilobit, Kilobyte, Megabit, Megabyte, etc.",
+  "homepage": "http://github.com/michaelKaefer/information-unit",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael Käfer",
+      "email": "michael.kaefer1@gmx.at"
+    }
+  ],
+  "keywords": [
+    "php",
+    "information",
+    "unit",
+    "bit",
+    "kilobit",
+    "megabit",
+    "gigabit",
+    "terabit",
+    "petabit",
+    "byte",
+    "kilobyte",
+    "megabyte",
+    "gigabyte",
+    "terabyte",
+    "petabyte"
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Unit\\InformationUnit\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Unit\\InformationUnit\\Test\\": "tests/src/"
+    }
+  }
+}
