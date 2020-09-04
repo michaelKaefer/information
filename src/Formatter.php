@@ -5,17 +5,10 @@ declare(strict_types=1);
 namespace Unit\Information;
 
 /**
- * Class Formatter
- *
  * @package Unit\Information
  */
 class Formatter
 {
-    /**
-     * @param string $string
-     *
-     * @return array
-     */
     public static function stringToValueAndUnit(string $string): array
     {
         preg_match('/^([0-9.]+)([a-zA-Z]+)$/', $string, $matches);
@@ -26,10 +19,6 @@ class Formatter
 
     /**
      * @param int|float     $value
-     * @param int           $unit
-     * @param int|null      $precision
-     *
-     * @return string
      */
     public static function valueAndUnitToString($value, int $unit, int $precision = null): string
     {
@@ -41,9 +30,6 @@ class Formatter
 
     /**
      * @param int|float     $bit
-     * @param int|null      $precision
-     *
-     * @return string
      */
     public static function getIntelligentFormat($bit, int $precision = null): string
     {

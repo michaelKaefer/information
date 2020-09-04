@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Unit\Information\Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -7,12 +9,9 @@ use Unit\Information\Formatter;
 use Unit\Information\Mapper;
 use Unit\Information\Size;
 
-class MemoryTest extends TestCase
+class FormatterTest extends TestCase
 {
-    /**
-     * @var Size
-     */
-    protected $size;
+    protected ?Size $size;
 
     protected function setUp()
     {

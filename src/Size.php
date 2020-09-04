@@ -25,21 +25,20 @@ class Size
     const PETABYTE = 12;
 
     /**
-     * @var int
+     * @var float|int
      */
     private $bit;
+    private Mapper $mapper;
 
     /**
-     * Size constructor.
-     *
-     * @param $value
+     * @param int|string $value
      */
     public function __construct($value)
     {
         $this->mapper = new Mapper();
 
         if (!is_string($value)) {
-            // if the argument is no string it is considered to be a numeric value in Byte
+            // If the argument is no string it is considered to be a numeric value in Byte.
             $unit = self::BYTE;
         } else {
             [$value, $unit] = Formatter::stringToValueAndUnit($value);
@@ -48,22 +47,12 @@ class Size
         $this->bit = $value * Mapper::getFactor($unit);
     }
 
-    /**
-     * @param Size $size
-     *
-     * @return Size
-     */
     public function add(Size $size): Size
     {
         $this->bit = $this->bit + $size->get('b');
         return $this;
     }
 
-    /**
-     * @param Size $size
-     *
-     * @return Size
-     */
     public function subtract(Size $size): Size
     {
         $result = $this->bit - $size->get('b');
@@ -77,22 +66,12 @@ class Size
         return $this;
     }
 
-    /**
-     * @param Size $size
-     *
-     * @return Size
-     */
     public function multiply(Size $size): Size
     {
         $this->bit = $this->bit * $size->get('b');
         return $this;
     }
 
-    /**
-     * @param Size $size
-     *
-     * @return Size
-     */
     public function divide(Size $size): Size
     {
         if (0 === $size->get('b')) {
@@ -104,13 +83,7 @@ class Size
         return $this;
     }
 
-    /**
-     * @param string|null $format
-     * @param int|null $precision
-     *
-     * @return string
-     */
-    public function format(string $format = null, int $precision = null)
+    public function format(string $format = null, int $precision = null): string
     {
         if (null === $format) {
             return Formatter::getIntelligentFormat($this->bit, $precision);
@@ -123,8 +96,6 @@ class Size
     }
 
     /**
-     * @param string $abbreviation
-     *
      * @return float|int
      */
     public function get(string $abbreviation)

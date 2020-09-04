@@ -5,16 +5,11 @@ declare(strict_types=1);
 namespace Unit\Information;
 
 /**
- * Class Mapper
- *
  * @package Unit\Information
  */
 class Mapper
 {
-    /**
-     * @var array
-     */
-    static $map = [
+    static array $map = [
         Size::BIT        => ['Bit',      'b',    1],
         Size::KILOBIT    => ['Kilobit',  'kb',   1000],
         Size::MEGABIT    => ['Megabit',  'Mb',   1000000],
@@ -29,11 +24,6 @@ class Mapper
         Size::PETABYTE   => ['Petabyte', 'PB',   8000000000000000],
     ];
 
-    /**
-     * @param string $abbreviation
-     *
-     * @return int
-     */
     public static function getUnitFromAbbreviation(string $abbreviation): int
     {
         foreach (static::$map as $unit => $values) {
@@ -44,21 +34,11 @@ class Mapper
         throw new \InvalidArgumentException('Could not get unit from abbreviation "' . $abbreviation . '".');
     }
 
-    /**
-     * @param int $unit
-     *
-     * @return int
-     */
     public static function getFactor(int $unit): int
     {
         return static::$map[$unit][2];
     }
 
-    /**
-     * @param int $unit
-     *
-     * @return string
-     */
     public static function getAbbreviation(int $unit): string
     {
         return static::$map[$unit][1];
