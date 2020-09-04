@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Unit\Information;
 
 /**
- * Class Size
- *
  * @package Unit\Information
  */
 class Size
