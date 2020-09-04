@@ -1,5 +1,3 @@
-# Group
-
 Package for calculating and formatting information units like Bit, Byte, Kilobit, Kilobyte, Megabit, Megabyte, etc.
 
 ## Installation
