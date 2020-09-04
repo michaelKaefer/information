@@ -3,7 +3,7 @@ Package for calculating and formatting information units like Bit, Byte, Kilobit
 ## Installation
 
 ```bash
-composer require unit/information-unit
+composer require unit/information
 ```
 
 ### Units
