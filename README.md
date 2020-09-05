@@ -42,6 +42,7 @@ use Unit\Information\Size;
 (new Size(73042346800))->format(); // "73.0423468GB"
 
 // Cut at precision
+(new Size(73042346800))->format(null);    // "73GB"
 (new Size(73042346800))->format(null, 0); // "73GB"
 (new Size(73042346800))->format(null, 2); // "73.04GB"
 ```
@@ -51,8 +52,8 @@ Format value in specified unit:
 use Unit\Information\Size;
 use Unit\Information\Unit;
 
-(new Size(73042346800))->format(Unit::MEGABYTE, 0); // "73042MB"
-(new Size(300000))->format(Unit::MEGABYTE, 1);      // "0.3MB"
+(new Size(73042346800))->format(Unit::MEGABYTE); // "73042MB"
+(new Size(300000))->format(Unit::MEGABYTE, 1);   // "0.3MB"
 ```
 
 Transform to a number (not a formatted string) value in another unit:
