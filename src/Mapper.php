@@ -7,21 +7,26 @@ namespace Unit\Information;
 /**
  * @package Unit\Information
  */
-class Mapper
+final class Mapper
 {
     static array $map = [
-        Size::BIT        => ['Bit',      'b',    1],
-        Size::KILOBIT    => ['Kilobit',  'kb',   1000],
-        Size::MEGABIT    => ['Megabit',  'Mb',   1000000],
-        Size::GIGABIT    => ['Gigabit',  'Gb',   1000000000],
-        Size::TERABIT    => ['Terabit',  'Tb',   1000000000000],
-        Size::PETABIT    => ['Petabit',  'Pb',   1000000000000000],
-        Size::BYTE       => ['Byte',     'B',    8],
-        Size::KILOBYTE   => ['Kilobyte', 'kB',   8000],
-        Size::MEGABYTE   => ['Megabyte', 'MB',   8000000],
-        Size::GIGABYTE   => ['Gigabyte', 'GB',   8000000000],
-        Size::TERABYTE   => ['Terabyte', 'TB',   8000000000000],
-        Size::PETABYTE   => ['Petabyte', 'PB',   8000000000000000],
+        Size::BIT        => ['Bit',      Unit::BIT,      1],
+        Size::KILOBIT    => ['Kilobit',  Unit::KILOBIT,  1000],
+        Size::MEGABIT    => ['Megabit',  Unit::MEGABIT,  1000000],
+        Size::GIGABIT    => ['Gigabit',  Unit::GIGABIT,  1000000000],
+        Size::TERABIT    => ['Terabit',  Unit::TERABIT,  1000000000000],
+        Size::PETABIT    => ['Petabit',  Unit::PETABIT,  1000000000000000],
+        Size::BYTE       => ['Byte',     Unit::BYTE,     8],
+        Size::KILOBYTE   => ['Kilobyte', Unit::KILOBYTE, 8000],
+        Size::MEGABYTE   => ['Megabyte', Unit::MEGABYTE, 8000000],
+        Size::GIGABYTE   => ['Gigabyte', Unit::GIGABYTE, 8000000000],
+        Size::TERABYTE   => ['Terabyte', Unit::TERABYTE, 8000000000000],
+        Size::PETABYTE   => ['Petabyte', Unit::PETABYTE, 8000000000000000],
+        Size::KIBIBYTE   => ['Kibibyte', Unit::KIBIBYTE, 8192],
+        Size::MEBIBYTE   => ['Mebibyte', Unit::MEBIBYTE, 8388608],
+        Size::GIBIBYTE   => ['Gibibyte', Unit::GIBIBYTE, 8589934592],
+        Size::TEBIBYTE   => ['Tebibyte', Unit::TEBIBYTE, 8796093022208],
+        Size::PEBIBYTE   => ['Pebibyte', Unit::PEBIBYTE, 9007199254740992],
     ];
 
     public static function getUnitFromAbbreviation(string $abbreviation): int

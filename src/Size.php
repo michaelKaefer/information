@@ -7,7 +7,7 @@ namespace Unit\Information;
 /**
  * @package Unit\Information
  */
-class Size
+final class Size
 {
     const BIT = 1;
     const KILOBIT = 2;
@@ -21,12 +21,18 @@ class Size
     const GIGABYTE = 10;
     const TERABYTE = 11;
     const PETABYTE = 12;
+    const KIBIBYTE = 13;
+    const MEBIBYTE = 14;
+    const GIBIBYTE = 15;
+    const TEBIBYTE = 16;
+    const PEBIBYTE = 17;
 
     /**
      * @var float|int
      */
-    private $bit;
+    private $bits;
     private Mapper $mapper;
+    private Calculator $calculator;
 
     /**
      * @param int|string $value
@@ -42,53 +48,22 @@ class Size
             [$value, $unit] = Formatter::stringToValueAndUnit($value);
         }
 
-        $this->bit = $value * Mapper::getFactor($unit);
+        $this->bits = $value * Mapper::getFactor($unit);
     }
 
-    public function add(Size $size): Size
+    public static function createFromPhpShorthandValue(string $phpShorthandValue): Size
     {
-        $this->bit = $this->bit + $size->get('b');
-        return $this;
-    }
-
-    public function subtract(Size $size): Size
-    {
-        $result = $this->bit - $size->get('b');
-
-        if (0 > $result) {
-            throw new \OutOfBoundsException('Could not subtract, the result would be less than 0.');
-        }
-
-        $this->bit = $result;
-
-        return $this;
-    }
-
-    public function multiply(Size $size): Size
-    {
-        $this->bit = $this->bit * $size->get('b');
-        return $this;
-    }
-
-    public function divide(Size $size): Size
-    {
-        if (0 === $size->get('b')) {
-            throw new \OutOfBoundsException('Could not divide by zero.');
-        }
-
-        $this->bit = \ceil($this->bit / $size->get('b'));
-
-        return $this;
+        return new self(PhpShorthandValueToBytesConverter::convert($phpShorthandValue));
     }
 
     public function format(string $format = null, int $precision = null): string
     {
         if (null === $format) {
-            return Formatter::getIntelligentFormat($this->bit, $precision);
+            return Formatter::getIntelligentFormat($this->bits, $precision);
         }
 
         $unit = Mapper::getUnitFromAbbreviation($format);
-        $value = $this->bit / Mapper::getFactor($unit);
+        $value = $this->bits / Mapper::getFactor($unit);
 
         return Formatter::valueAndUnitToString($value, $unit, $precision);
     }
@@ -99,6 +74,44 @@ class Size
     public function get(string $abbreviation)
     {
         $unit = Mapper::getUnitFromAbbreviation($abbreviation);
-        return $this->bit / Mapper::getFactor($unit);
+        return $this->bits / Mapper::getFactor($unit);
+    }
+
+    public function add(Size $size): Size
+    {
+        return $this->calculator->add($this, $size);
+    }
+
+    public function subtract(Size $size): Size
+    {
+        return $this->calculator->subtract($this, $size);
+    }
+
+    public function multiply(Size $size): Size
+    {
+        return $this->calculator->multiply($this, $size);
+    }
+
+    public function divide(Size $size): Size
+    {
+        return $this->calculator->divide($this, $size);
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getBits()
+    {
+        return $this->bits;
+    }
+
+    /**
+     * @param float|int $bits
+     */
+    public function setBits($bits): self
+    {
+        $this->bits = $bits;
+
+        return $this;
     }
 }

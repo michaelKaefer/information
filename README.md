@@ -7,20 +7,27 @@ composer require unit/information
 ```
 
 ### Units
-| Name     | Abbreviation | In Bit               | In Byte           |
-| -------- |:------------:| --------------------:| -----------------:|
-| Bit      | b            | 1                    | 8                 |
-| Kilobit  | kb           | 0.001                | 0.008             |
-| Megabit  | Mb           | 0.000001             | 0.000008          |
-| Gigabit  | Gb           | 0.000000001          | 0.000000008       |
-| Terabit  | Tb           | 0.000000000001       | 0.000000000008    |
-| Petabit  | Pb           | 0.000000000000001    | 0.000000000000008 |
-| Byte     | B            | 0.125                | 1                 |
-| Kilobyte | kB           | 0.000125             | 0.001             |
-| Megabyte | MB           | 0.000000125          | 0.000001          |
-| Gigabyte | GB           | 0.000000000125       | 0.000000001       |
-| Terabyte | TB           | 0.000000000000125    | 0.000000000001    |
-| Petabyte | PB           | 0.000000000000000125 | 0.000000000000001 |
+The used units follow the IEC standard.
+
+| Name                                               | Abbreviation | In Bit           | In Byte          | Constant to use                  |
+| -------------------------------------------------- |:------------:| ----------------:| ----------------:| --------------------------------:|
+| [Bit](https://en.wikipedia.org/wiki/Bit)           | b            | 1                | 0.125            | Unit\Information\Unit::BIT       |
+| [Kilobit](https://en.wikipedia.org/wiki/Kilobit)   | kb           | 1000             | 125              | Unit\Information\Unit::KILOBIT   |
+| [Megabit](https://en.wikipedia.org/wiki/Megabit)   | Mb           | 1000000          | 125000           | Unit\Information\Unit::MEGABIT   |
+| [Gigabit](https://en.wikipedia.org/wiki/Gigabit)   | Gb           | 1000000000       | 125000000        | Unit\Information\Unit::GIGABIT   |
+| [Terabit](https://en.wikipedia.org/wiki/Terabit)   | Tb           | 1000000000000    | 125000000000     | Unit\Information\Unit::TERABIT   |
+| [Petabit](https://en.wikipedia.org/wiki/Petabit)   | Pb           | 1000000000000000 | 125000000000000  | Unit\Information\Unit::PETABIT   |
+| [Byte](https://en.wikipedia.org/wiki/Byte)         | B            | 8                | 1                | Unit\Information\Unit::BYTE      |
+| [Kilobyte](https://en.wikipedia.org/wiki/Kilobyte) | kB           | 8000             | 1000             | Unit\Information\Unit::KILOBYTE  |
+| [Megabyte](https://en.wikipedia.org/wiki/Megabyte) | MB           | 8000000          | 1000000          | Unit\Information\Unit::MEGABYTE  |
+| [Gigabyte](https://en.wikipedia.org/wiki/Gigabyte) | GB           | 8000000000       | 1000000000       | Unit\Information\Unit::GIGABYTE  |
+| [Terabyte](https://en.wikipedia.org/wiki/Terabyte) | TB           | 8000000000000    | 1000000000000    | Unit\Information\Unit::TERABYTE  |
+| [Petabyte](https://en.wikipedia.org/wiki/Petabyte) | PB           | 8000000000000000 | 1000000000000000 | Unit\Information\Unit::PETABYTE  |
+| [Kibibyte](https://en.wikipedia.org/wiki/Kibibyte) | KiB          | 8192             | 1024             | Unit\Information\Unit::KIBIBYTE  |
+| [Mebibyte](https://en.wikipedia.org/wiki/Mebibyte) | MiB          | 8388608          | 1048576          | Unit\Information\Unit::MEBIBYTE  |
+| [Gigabyte](https://en.wikipedia.org/wiki/Gibibyte) | GiB          | 8589934592       | 1073741824       | Unit\Information\Unit::GIBIBYTE  |
+| [Terabyte](https://en.wikipedia.org/wiki/Tebibyte) | TiB          | 8796093022208    | 1099511627776    | Unit\Information\Unit::TEBIBYTE  |
+| [Pebibyte](https://en.wikipedia.org/wiki/Pebibyte) | PiB          | 9007199254740992 | 1125899906842624 | Unit\Information\Unit::PEBIBYTE  |
 
 ## Usage
 Intelligent formatting
@@ -77,6 +84,14 @@ $size->multiply($otherSize);
 $size->divide($otherSize);
 
 $size->add($otherSize)->subtract($otherSize); // Can be chained
+```
+
+Instantiate from PHP's shorthand values
+```php
+use Unit\Information\Size;
+
+$size = new Size('128M');
+$size = new Size(\memory_get_usage(true));
 ```
 
 ## Testing

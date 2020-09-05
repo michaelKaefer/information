@@ -7,7 +7,7 @@ namespace Unit\Information;
 /**
  * @package Unit\Information
  */
-class Formatter
+final class Formatter
 {
     public static function stringToValueAndUnit(string $string): array
     {
@@ -18,7 +18,7 @@ class Formatter
     }
 
     /**
-     * @param int|float     $value
+     * @param int|float $value
      */
     public static function valueAndUnitToString($value, int $unit, int $precision = null): string
     {
@@ -29,32 +29,32 @@ class Formatter
     }
 
     /**
-     * @param int|float     $bit
+     * Note: we do not return KiB, MiB, GiB, TiB and PiB (this is just not implemented)
+     *
+     * @param int|float $bit
      */
     public static function getIntelligentFormat($bit, int $precision = null): string
     {
         if (8000 > $bit) {
             $unit = Size::BYTE;
-            $value = $bit / Mapper::getFactor($unit);
         } elseif (8000000 > $bit) {
             $unit = Size::KILOBYTE;
-            $value = $bit / Mapper::getFactor($unit);
         } elseif (8000000000 > $bit) {
             $unit = Size::MEGABYTE;
-            $value = $bit / Mapper::getFactor($unit);
         } elseif (8000000000000 > $bit) {
             $unit = Size::GIGABYTE;
-            $value = $bit / Mapper::getFactor($unit);
         } elseif (8000000000000000 > $bit) {
             $unit = Size::TERABYTE;
-            $value = $bit / Mapper::getFactor($unit);
         } else {
             $unit = Size::PETABYTE;
-            $value = $bit / Mapper::getFactor($unit);
         }
+
+        $value = $bit / Mapper::getFactor($unit);
+
         if (null !== $precision) {
             $value = \number_format((float) $value, $precision, '.', '');
         }
+
         return self::valueAndUnitToString($value, $unit);
     }
 }

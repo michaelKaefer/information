@@ -8,41 +8,66 @@ use PHPUnit\Framework\TestCase;
 use Unit\Information\Formatter;
 use Unit\Information\Mapper;
 use Unit\Information\Size;
+use Generator;
 
 class FormatterTest extends TestCase
 {
-    protected ?Size $size;
-
-    protected function setUp()
+    /**
+     * @dataProvider getBitAndPrecision
+     */
+    public function testCanFormatIntelligently(int $bit, ?int $precision, string $expectedString)
     {
-        $this->size = new Size(1);
+        $this->assertEquals($expectedString, Formatter::getIntelligentFormat($bit, $precision));
     }
 
-    protected function tearDown()
+    public function getBitAndPrecision(): Generator
     {
-        $this->size = null;
+        yield [8,       null, '1B'   ];
+        yield [8800000, 1,    '1.1MB'];
+        yield [8.8,     1,    '1.0B' ];
     }
 
-    public function testStringToValueAndUnit()
+    /**
+     * @dataProvider getStrings
+     * @param int|float $expectedValue
+     */
+    public function testCanTransformIntelligentlyStringToValueAndUnit(
+        string $string,
+        $expectedValue,
+        string $expectedUnitAbbreviation
+    )
     {
-        [$value, $unit] = Formatter::stringToValueAndUnit('1MB');
-        $this->assertEquals(1, $value);
-        $this->assertEquals('MB', Mapper::getAbbreviation($unit));
+        [$value, $unit] = Formatter::stringToValueAndUnit($string);
 
-        [$value, $unit] = Formatter::stringToValueAndUnit('1123.723kB');
-        $this->assertEquals(1123.723, $value);
-        $this->assertEquals('kB', Mapper::getAbbreviation($unit));
+        $this->assertEquals($expectedValue, $value);
+        $this->assertEquals($expectedUnitAbbreviation, Mapper::getAbbreviation($unit));
     }
 
-    public function testValueAndUnitToString()
+    public function getStrings(): Generator
     {
-        $this->assertEquals('12b', Formatter::valueAndUnitToString(12, Size::BIT));
-        $this->assertEquals('2.65TB', Formatter::valueAndUnitToString(2.64562, Size::TERABYTE, 2));
+        yield ['1MB',        1,        'MB'];
+        yield ['1123.723kB', 1123.723, 'kB'];
     }
 
-    public function testGetIntelligentFormat()
+    /**
+     * @dataProvider getValueAndUnitAbbreviationAndPrecision
+     * @param int|float $value
+     */
+    public function testCanTransformValueAndUnitAbbreviationToString(
+        $value,
+        int $unitAbbreviation,
+        ?int $precision,
+        string $expectedString
+    )
     {
-        $this->assertEquals('1B', Formatter::getIntelligentFormat(8));
-        $this->assertEquals('1.1MB', Formatter::getIntelligentFormat(8800000, 1));
+        $this->assertEquals($expectedString, Formatter::valueAndUnitToString($value, $unitAbbreviation, $precision));
+    }
+
+    public function getValueAndUnitAbbreviationAndPrecision(): Generator
+    {
+        yield [12,      Size::BIT,      null, '12b'      ];
+        yield [2.64562, Size::TERABYTE, null, '2.64562TB'];
+        yield [12,      Size::BIT,      2,    '12.00b'   ];
+        yield [2.64562, Size::TERABYTE, 2,    '2.65TB'   ];
     }
 }
