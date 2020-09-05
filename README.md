@@ -30,7 +30,7 @@ The used units follow the IEC standard.
 | [Pebibyte](https://en.wikipedia.org/wiki/Pebibyte) | PiB          | 9007199254740992 | 1125899906842624 | Unit\Information\Unit::PEBIBYTE  |
 
 ## Usage
-Intelligent formatting
+Intelligent formatting:
 ```php
 use Unit\Information\Size;
 
@@ -46,23 +46,25 @@ use Unit\Information\Size;
 (new Size(73042346800))->format(null, 2); // "73.04GB"
 ```
 
-Format value in specified unit
+Format value in specified unit:
 ```php
 use Unit\Information\Size;
+use Unit\Information\Unit;
 
-(new Size(73042346800))->format('MB', 0); // "73042MB"
-(new Size(300000))->format('MB', 1);      // "0.3MB"
+(new Size(73042346800))->format(Unit::MEGABYTE, 0); // "73042MB"
+(new Size(300000))->format(Unit::MEGABYTE, 1);      // "0.3MB"
 ```
 
-Transform to a number (not a formatted string) value in another unit
+Transform to a number (not a formatted string) value in another unit:
 ```php
 use Unit\Information\Size;
+use Unit\Information\Unit;
 
-(new Size(100000))->get('kB'); // 100
-(new Size(1))->get('kB');      // 0.001
+(new Size(100000))->get(Unit::KILOBYTE); // 100
+(new Size(1))->get(Unit::KILOBYTE);      // 0.001
 ```
 
-Create a size from a value in a specified unit
+Create a size from a value in a specified unit:
 ```php
 use Unit\Information\Size;
 
@@ -71,7 +73,7 @@ new Size('1MB'); // If it is a string the string is transformed to a Bit value i
 new Size('0.05GB');
 ```
 
-Calculating
+Calculating:
 ```php
 use Unit\Information\Size;
 
@@ -86,12 +88,18 @@ $size->divide($otherSize);
 $size->add($otherSize)->subtract($otherSize); // Can be chained
 ```
 
-Instantiate from PHP's shorthand values
+Instantiate from PHP's shorthand values (which do not follow the IEC standard, see 
+https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes):
 ```php
 use Unit\Information\Size;
+use Unit\Information\InvalidPhpShorthandValueException;
 
-$size = new Size('128M');
-$size = new Size(\memory_get_usage(true));
+$size = Size::createFromPhpShorthandValue('1M'); // Results in 1048576 Bytes
+try {
+    $size = Size::createFromPhpShorthandValue(\memory_get_usage(true));
+} catch (InvalidPhpShorthandValueException $exception) {
+    // $exception->getMessage() is: 'The PHP shorthand value "-1" cannot be converted to a meaningful size.'
+}
 ```
 
 ## Testing
