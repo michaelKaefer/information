@@ -13,7 +13,7 @@ class CalculatorTest extends TestCase
 {
     private Calculator $calculator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->calculator = new Calculator();
     }

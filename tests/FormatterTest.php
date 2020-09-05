@@ -14,8 +14,9 @@ class FormatterTest extends TestCase
 {
     /**
      * @dataProvider getBitAndPrecision
+     * @param int|float $bit
      */
-    public function testCanFormatIntelligently(int $bit, ?int $precision, string $expectedString)
+    public function testCanFormatIntelligently($bit, ?int $precision, string $expectedString)
     {
         $this->assertEquals($expectedString, Formatter::getIntelligentFormat($bit, $precision));
     }
@@ -24,7 +25,7 @@ class FormatterTest extends TestCase
     {
         yield [8,       null, '1B'   ];
         yield [8800000, 1,    '1.1MB'];
-        yield [8.8,     1,    '1.0B' ];
+        yield [8.1,     1,    '1.0B' ];
     }
 
     /**
