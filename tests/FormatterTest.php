@@ -71,4 +71,27 @@ class FormatterTest extends TestCase
         yield [12,      Size::BIT,      2,    '12.00b'   ];
         yield [2.64562, Size::TERABYTE, 2,    '2.65TB'   ];
     }
+
+    /**
+     * @dataProvider getCustomFormats
+     * @param int|float $value
+     */
+    public function testCanReturnCustomFormats(
+        $value,
+        int $unitAbbreviation,
+        ?int $precision,
+        string $format,
+        string $expectedString
+    )
+    {
+        $string = Formatter::valueAndUnitToString($value, $unitAbbreviation, $precision, $format);
+        $this->assertEquals($expectedString, $string);
+    }
+
+    public function getCustomFormats(): Generator
+    {
+        yield [2.64562, Size::TERABYTE, null, '%size% %unit_abbreviation%', '2.64562 TB'];
+        yield [2.64562, Size::MEBIBYTE, 1, 'The size of the file is %size% %unit_name% (%unit_abbreviation%).', 'The size of the file is 2.6 Mebibyte (MiB).'];
+        yield [2.64562, Size::MEBIBYTE, 0, '%unit_name%%unit_name%', 'MebibyteMebibyte'];
+    }
 }

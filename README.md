@@ -45,6 +45,9 @@ use Unit\Information\Size;
 (new Size(73042346800))->format(null);    // "73GB"
 (new Size(73042346800))->format(null, 0); // "73GB"
 (new Size(73042346800))->format(null, 2); // "73.04GB"
+
+// Custom format
+(new Size(73042346800))->format(null, 1, '%size% %unit_abbreviation% (%unit_name%)'); // "73.0 GB (Gigabyte)"
 ```
 
 Format value in specified unit:

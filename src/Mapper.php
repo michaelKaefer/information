@@ -39,13 +39,18 @@ final class Mapper
         throw new \InvalidArgumentException('Could not get unit from abbreviation "' . $abbreviation . '".');
     }
 
-    public static function getFactor(int $unit): int
+    public static function getName(int $unit): string
     {
-        return static::$map[$unit][2];
+        return static::$map[$unit][0];
     }
 
     public static function getAbbreviation(int $unit): string
     {
         return static::$map[$unit][1];
+    }
+
+    public static function getFactor(int $unit): int
+    {
+        return static::$map[$unit][2];
     }
 }

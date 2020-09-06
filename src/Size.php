@@ -56,16 +56,16 @@ final class Size
         return new self(PhpShorthandValueToBytesConverter::convert($phpShorthandValue));
     }
 
-    public function format(string $format = null, int $precision = null): string
+    public function format(string $unitAbbreviation = null, int $precision = null, string $format = null): string
     {
-        if (null === $format) {
-            return Formatter::getIntelligentFormat($this->bits, $precision);
+        if (null === $unitAbbreviation) {
+            return Formatter::getIntelligentFormat($this->bits, $precision, $format);
         }
 
-        $unit = Mapper::getUnitFromAbbreviation($format);
+        $unit = Mapper::getUnitFromAbbreviation($unitAbbreviation);
         $value = $this->bits / Mapper::getFactor($unit);
 
-        return Formatter::valueAndUnitToString($value, $unit, $precision);
+        return Formatter::valueAndUnitToString($value, $unit, $precision, $format);
     }
 
     /**
