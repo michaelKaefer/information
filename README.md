@@ -100,7 +100,7 @@ use Unit\Information\InvalidPhpShorthandValueException;
 
 $size = Size::createFromPhpShorthandValue('1M'); // Results in 1048576 Bytes
 try {
-    $size = Size::createFromPhpShorthandValue(\memory_get_usage(true));
+    $size = Size::createFromPhpShorthandValue(ini_get('memory_limit'));
 } catch (InvalidPhpShorthandValueException $exception) {
     // $exception->getMessage() is: 'The PHP shorthand value "-1" cannot be converted to a meaningful size.'
 }
