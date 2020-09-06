@@ -31,7 +31,7 @@ final class Mapper
 
     public static function getUnitFromAbbreviation(string $abbreviation): int
     {
-        foreach (static::$map as $unit => $values) {
+        foreach (self::$map as $unit => $values) {
             if ($abbreviation === $values[1]) {
                 return $unit;
             }
