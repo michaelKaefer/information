@@ -6,7 +6,7 @@ Package for calculating and formatting information units like Bit, Byte, Kilobit
 composer require unit/information
 ```
 
-### Units
+## Units
 The used units follow the IEC standard.
 
 | Name                                               | Abbreviation | In Bit           | In Byte          | Constant to use                  |
