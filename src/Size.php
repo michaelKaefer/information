@@ -32,7 +32,7 @@ final class Size
      */
     private $bits;
     private Mapper $mapper;
-    private Calculator $calculator;
+    private ?Calculator $calculator = null;
 
     /**
      * @param int|string $value
@@ -79,22 +79,22 @@ final class Size
 
     public function add(Size $size): Size
     {
-        return $this->calculator->add($this, $size);
+        return $this->getCalculator()->add($this, $size);
     }
 
     public function subtract(Size $size): Size
     {
-        return $this->calculator->subtract($this, $size);
+        return $this->getCalculator()->subtract($this, $size);
     }
 
     public function multiply(Size $size): Size
     {
-        return $this->calculator->multiply($this, $size);
+        return $this->getCalculator()->multiply($this, $size);
     }
 
     public function divide(Size $size): Size
     {
-        return $this->calculator->divide($this, $size);
+        return $this->getCalculator()->divide($this, $size);
     }
 
     /**
@@ -113,5 +113,13 @@ final class Size
         $this->bits = $bits;
 
         return $this;
+    }
+
+    private function getCalculator(): Calculator
+    {
+        if (null === $this->calculator) {
+            $this->calculator = new Calculator();
+        }
+        return $this->calculator;
     }
 }
