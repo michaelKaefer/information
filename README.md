@@ -1,9 +1,12 @@
+# information
 Package for calculating and formatting information units like Bit, Byte, Kilobit, Kilobyte, Megabit, Megabyte, etc.
 
-## Installation
+[![Total Downloads](https://poser.pugx.org/unit/information/downloads)](//packagist.org/packages/unit/information)
+[![Version](https://poser.pugx.org/unit/information/version)](//packagist.org/packages/unit/information)
 
-```bash
-composer require unit/information
+## Installation
+```console
+user@machine:~$ composer require unit/information
 ```
 
 ## Units
@@ -107,11 +110,9 @@ try {
 ```
 
 ## Testing
-
-``` bash
-$ ./vendor/bin/phpunit
+```console
+user@machine:~$ ./vendor/bin/phpunit
 ```
 
 ## License
-
-The MIT License (MIT). Please see [License File](https://github.com/unit/information-unit/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/michaelKaefer/information/blob/master/LICENSE) for more information.
