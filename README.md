@@ -109,9 +109,32 @@ try {
 }
 ```
 
-## Testing
+## Development
+For some development tools the [Symfony binary](https://symfony.com/download) has to be installed:
 ```console
-user@machine:~$ ./vendor/bin/phpunit
+user@machine:~$ wget https://get.symfony.com/cli/installer -O - | bash
+```
+
+Build repo for development:
+```console
+user@machine:~$ git clone git@github.com:michaelKaefer/money-bundle.git
+user@machine:~$ cd money-bundle/
+user@machine:~$ make build-dev
+```
+
+Testing:
+```console
+user@machine:~$ make tests
+// Build PHP code coverage
+user@machine:~$ make code-coverage
+```
+
+Linting:
+```console
+user@machine:~$ make composer-validate
+user@machine:~$ make security-check
+user@machine:~$ make psalm-dry-run
+user@machine:~$ make cs-fixer-dry-run
 ```
 
 ## License

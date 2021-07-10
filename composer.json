@@ -27,10 +27,10 @@
     "petabyte"
   ],
   "require": {
-    "php": "^7.4"
+    "php": ">=7.4"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.3"
+    "phpunit/phpunit": "^9.5"
   },
   "autoload": {
     "psr-4": {
