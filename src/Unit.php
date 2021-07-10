@@ -2,28 +2,32 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of information.
+ * (c) Michael Käfer <michael.kaefer1@gmx.at>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Unit\Information;
 
-/**
- * @package Unit\Information
- */
 final class Unit
 {
-    const BIT = 'b';
-    const KILOBIT = 'kb';
-    const MEGABIT = 'Mb';
-    const GIGABIT = 'Gb';
-    const TERABIT = 'Tb';
-    const PETABIT = 'Pb';
-    const BYTE = 'B';
-    const KILOBYTE = 'kB';
-    const MEGABYTE = 'MB';
-    const GIGABYTE = 'GB';
-    const TERABYTE = 'TB';
-    const PETABYTE = 'PB';
-    const KIBIBYTE = 'KiB';
-    const MEBIBYTE = 'MiB';
-    const GIBIBYTE = 'GiB';
-    const TEBIBYTE = 'TiB';
-    const PEBIBYTE = 'PiB';
+    public const BIT = 'b';
+    public const KILOBIT = 'kb';
+    public const MEGABIT = 'Mb';
+    public const GIGABIT = 'Gb';
+    public const TERABIT = 'Tb';
+    public const PETABIT = 'Pb';
+    public const BYTE = 'B';
+    public const KILOBYTE = 'kB';
+    public const MEGABYTE = 'MB';
+    public const GIGABYTE = 'GB';
+    public const TERABYTE = 'TB';
+    public const PETABYTE = 'PB';
+    public const KIBIBYTE = 'KiB';
+    public const MEBIBYTE = 'MiB';
+    public const GIBIBYTE = 'GiB';
+    public const TEBIBYTE = 'TiB';
+    public const PEBIBYTE = 'PiB';
 }

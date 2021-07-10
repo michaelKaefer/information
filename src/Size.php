@@ -2,30 +2,34 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of information.
+ * (c) Michael Käfer <michael.kaefer1@gmx.at>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Unit\Information;
 
-/**
- * @package Unit\Information
- */
 final class Size
 {
-    const BIT = 1;
-    const KILOBIT = 2;
-    const MEGABIT = 3;
-    const GIGABIT = 4;
-    const TERABIT = 5;
-    const PETABIT = 6;
-    const BYTE = 7;
-    const KILOBYTE = 8;
-    const MEGABYTE = 9;
-    const GIGABYTE = 10;
-    const TERABYTE = 11;
-    const PETABYTE = 12;
-    const KIBIBYTE = 13;
-    const MEBIBYTE = 14;
-    const GIBIBYTE = 15;
-    const TEBIBYTE = 16;
-    const PEBIBYTE = 17;
+    public const BIT = 1;
+    public const KILOBIT = 2;
+    public const MEGABIT = 3;
+    public const GIGABIT = 4;
+    public const TERABIT = 5;
+    public const PETABIT = 6;
+    public const BYTE = 7;
+    public const KILOBYTE = 8;
+    public const MEGABYTE = 9;
+    public const GIGABYTE = 10;
+    public const TERABYTE = 11;
+    public const PETABYTE = 12;
+    public const KIBIBYTE = 13;
+    public const MEBIBYTE = 14;
+    public const GIBIBYTE = 15;
+    public const TEBIBYTE = 16;
+    public const PEBIBYTE = 17;
 
     /**
      * @var float|int
@@ -41,7 +45,7 @@ final class Size
     {
         $this->mapper = new Mapper();
 
-        if (!is_string($value)) {
+        if (!\is_string($value)) {
             // If the argument is no string it is considered to be a numeric value in Byte.
             $unit = self::BYTE;
         } else {
@@ -74,6 +78,7 @@ final class Size
     public function get(string $abbreviation)
     {
         $unit = Mapper::getUnitFromAbbreviation($abbreviation);
+
         return $this->bits / Mapper::getFactor($unit);
     }
 
@@ -120,6 +125,7 @@ final class Size
         if (null === $this->calculator) {
             $this->calculator = new Calculator();
         }
+
         return $this->calculator;
     }
 }

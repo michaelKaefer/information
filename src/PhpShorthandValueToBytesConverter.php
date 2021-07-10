@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of information.
+ * (c) Michael Käfer <michael.kaefer1@gmx.at>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Unit\Information;
 
 final class PhpShorthandValueToBytesConverter
@@ -14,8 +21,8 @@ final class PhpShorthandValueToBytesConverter
      * This method is taken from
      * https://github.com/symfony/symfony/blob/master/src/Symfony/Component/HttpKernel/DataCollector/MemoryDataCollector.php.
      *
-     * @return int|float The configured memory limit can exceed the range that can be
-     *                   represented by an integer.
+     * @return int|float the configured memory limit can exceed the range that can be
+     *                   represented by an integer
      */
     public static function convert(string $phpShorthandValue)
     {
@@ -23,17 +30,17 @@ final class PhpShorthandValueToBytesConverter
             throw new InvalidPhpShorthandValueException();
         }
 
-        $phpShorthandValue = strtolower($phpShorthandValue);
-        $max = strtolower(ltrim($phpShorthandValue, '+'));
-        if (0 === strpos($max, '0x')) {
+        $phpShorthandValue = mb_strtolower($phpShorthandValue);
+        $max = mb_strtolower(ltrim($phpShorthandValue, '+'));
+        if (0 === mb_strpos($max, '0x')) {
             $max = \intval($max, 16);
-        } elseif (0 === strpos($max, '0')) {
+        } elseif (0 === mb_strpos($max, '0')) {
             $max = \intval($max, 8);
         } else {
             $max = (int) $max;
         }
 
-        switch (substr($phpShorthandValue, -1)) {
+        switch (mb_substr($phpShorthandValue, -1)) {
             case 't': $max *= 1024;
             // no break
             case 'g': $max *= 1024;

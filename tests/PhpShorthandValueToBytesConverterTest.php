@@ -2,12 +2,19 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of information.
+ * (c) Michael Käfer <michael.kaefer1@gmx.at>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Unit\Information\Tests;
 
+use Generator;
 use PHPUnit\Framework\TestCase;
 use Unit\Information\InvalidPhpShorthandValueException;
 use Unit\Information\PhpShorthandValueToBytesConverter;
-use Generator;
 
 class PhpShorthandValueToBytesConverterTest extends TestCase
 {
@@ -16,12 +23,12 @@ class PhpShorthandValueToBytesConverterTest extends TestCase
      */
     public function testCanFormatIntelligently(string $phpShorthandValue, $expectedBytes)
     {
-        $this->assertEquals($expectedBytes, PhpShorthandValueToBytesConverter::convert($phpShorthandValue));
+        $this->assertSame($expectedBytes, PhpShorthandValueToBytesConverter::convert($phpShorthandValue));
     }
 
     public function getShorthandValue(): Generator
     {
-        yield ['1',  1      ];
+        yield ['1',  1];
         yield ['1M', 1048576];
     }
 

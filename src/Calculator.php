@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of information.
+ * (c) Michael Käfer <michael.kaefer1@gmx.at>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Unit\Information;
 
-/**
- * @package Unit\Information
- */
 final class Calculator
 {
     public function add(Size $a, Size $b): Size
@@ -17,7 +21,7 @@ final class Calculator
             throw new \OutOfBoundsException('Could not add, the result would be less than 0.');
         }
 
-        $a->setBits(\round($result));
+        $a->setBits(round($result));
 
         return $a;
     }
@@ -30,7 +34,7 @@ final class Calculator
             throw new \OutOfBoundsException('Could not subtract, the result would be less than 0.');
         }
 
-        $a->setBits(\round($result));
+        $a->setBits(round($result));
 
         return $a;
     }
@@ -43,7 +47,7 @@ final class Calculator
             throw new \OutOfBoundsException('Could not multiply, the result would be less than 0.');
         }
 
-        $a->setBits(\round($result));
+        $a->setBits(round($result));
 
         return $a;
     }
@@ -60,7 +64,7 @@ final class Calculator
             throw new \OutOfBoundsException('Could not divide, the result would be less than 0.');
         }
 
-        $a->setBits(\round($result));
+        $a->setBits(round($result));
 
         return $a;
     }
